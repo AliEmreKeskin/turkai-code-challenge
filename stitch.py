@@ -27,7 +27,7 @@ for imagePath in imagePaths:
 # initialize OpenCV's image stitcher object and then perform the image
 # stitching
 print("[INFO] stitching images...")
-stitcher = cv2.createStitcher() #if imutils.is_cv3() else cv2.Stitcher_create()
+stitcher = cv2.createStitcher() if imutils.is_cv3() else cv2.Stitcher_create()
 (status, stitched) = stitcher.stitch(images)
 
 # if the status is '0', then OpenCV successfully performed image
