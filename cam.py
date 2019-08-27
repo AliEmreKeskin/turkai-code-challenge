@@ -1,7 +1,12 @@
 import numpy as np
 import cv2
+import sys
 
-cap = cv2.VideoCapture(0)
+if(len(sys.argv)<2):
+    cap = cv2.VideoCapture(0)
+else:
+    i=int(sys.argv[1])
+    cap = cv2.VideoCapture(i)
 
 while(True):
     # Capture frame-by-frame
