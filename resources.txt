@@ -1,6 +1,5 @@
 https://docs.opencv.org/master/dd/d43/tutorial_py_video_display.html
 
-yolo:
 https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/
 
 https://docs.python.org/3.6/library/multiprocessing.html
