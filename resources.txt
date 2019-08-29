@@ -8,3 +8,7 @@ https://docs.python.org/3.6/library/multiprocessing.html
 https://docs.python.org/3.6/library/threading.html#condition-objects
 
 https://www.geeksforgeeks.org/barrier-objects-python/
+
+https://docs.python.org/3.6/library/os.html#os.kill
+
+https://kite.com/python/examples/5681/signal-kill-a-process

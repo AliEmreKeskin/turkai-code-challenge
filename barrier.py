@@ -1,12 +1,13 @@
 import multiprocessing
 
-barrier=multiprocessing.Barrier(11)
-#finnish=multiprocessing.Barrier(10)
+capture_barrier=multiprocessing.Barrier(11)
+operation_barrier=multiprocessing.Barrier(11)
 
 def f(i):
     while(True):
-        barrier.wait()
+        capture_barrier.wait()
         print(i)
+        operation_barrier.wait()
 
 prosesses=[]
 for i in range(10):
@@ -15,6 +16,7 @@ for i in range(10):
     prosesses[i].start()
 
 while(True):
-    asd=input("go")
-    barrier.wait()
+    capture_barrier.wait()
+    operation_barrier.wait()
+    print("***********")
 

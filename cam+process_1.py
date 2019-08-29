@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 from multiprocessing import Process
-#import os
+import os
 from datetime import datetime
 import sys
 
@@ -10,13 +10,14 @@ def info(title):
     dt = datetime.now()
     print(dt.hour,dt.minute,dt.second,dt.microsecond/1000)
     print('module name:', __name__)
-    #print('parent process:', os.getppid())
-    #print('process id:', os.getpid())
+    print('parent process:', os.getppid())
+    print('process id:', os.getpid())
 
 def f(cap,filename):
     info('function f**************')
     print(filename)
     ret,frame=cap.read()
+    info("#####")
     cv2.imwrite(filename,frame)
 
 if __name__ == '__main__':
