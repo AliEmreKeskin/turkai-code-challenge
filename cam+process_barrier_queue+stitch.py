@@ -6,6 +6,7 @@ from datetime import datetime
 import os
 import sys
 import signal
+import imutils
 
 # Barrier to start capturing processes
 capture_barrier=multiprocessing.Barrier(3)
@@ -33,9 +34,9 @@ def capture(source,queue):
     while(True):
         capture_barrier.wait()
         
-        info("[ CAPTURE START "+str(source)+" ]")
+        info("[ CAPTURE START ({}) ]".format(source))
         ret,frame=camera.read()
-        info("[ CAPTURE FINISH "+str(source)+" ]")
+        info("[ CAPTURE FINISH ({}) ]".format(source))
 
         queue.put(frame)
         operation_barrier.wait()
@@ -67,13 +68,22 @@ if __name__ == '__main__':
         # Gather synchronised frames
         capture_barrier.wait()
         operation_barrier.wait()
-        info("[ OPERATION ]")
+        info("[ GET IMAGES ]")
         curr_frame_1=frame_queue.get()
         curr_frame_2=frame_queue.get()
         cv2.imshow("frame 1",curr_frame_1)
         cv2.imshow("frame 2",curr_frame_2)
 
         # Stitch frames
+        images=[curr_frame_1,curr_frame_2]
+        info("[ STITCHING ]")
+        stitcher = cv2.createStitcher() if imutils.is_cv3() else cv2.Stitcher_create()
+        (status, stitched) = stitcher.stitch(images)
+        if(status==0):
+            cv2.imshow("Stitched",stitched)
+        else:
+            info("[ STITCHING FAILED WITH EROR CODE ({}) ]".format(status))
+
 
         # Yolo
 
